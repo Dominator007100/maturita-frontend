@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard – Standardy a normy</title>
+  <meta name="description" content="Informace o klíčových standardech kybernetické bezpečnosti – NÚKIB, ISO/IEC 27001, směrnice NIS2.">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-layout" id="app">
+    <script src="/js/main.js"></script>
+    <script>document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML());</script>
+
+    <main class="main-content">
+      <div style="max-width:1024px;margin:0 auto;" class="page-padding">
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="icon icon-lg" style="color:var(--primary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+            </svg>
+          </span>
+          <div>
+            <h1 class="text-2xl font-bold" data-testid="text-standards-title">Standardy a normy</h1>
+            <p class="text-sm text-muted">Informace o klíčových standardech kybernetické bezpečnosti</p>
+          </div>
+        </div>
+
+        <div class="tabs-list" data-testid="tabs-standards">
+          <button class="tab-btn active" onclick="switchTab('nukib', this)" data-testid="tab-nukib">NÚKIB</button>
+          <button class="tab-btn" onclick="switchTab('iso27001', this)" data-testid="tab-iso">ISO/IEC 27001</button>
+          <button class="tab-btn" onclick="switchTab('nis2', this)" data-testid="tab-nis2">NIS2</button>
+        </div>
+
+        <!-- NÚKIB -->
+        <div class="tab-content active" id="tab-nukib">
+          <div class="card mb-6">
+            <div class="card-content p-8">
+              <div class="flex items-start gap-4">
+                <div style="width:48px;height:48px;border-radius:6px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--primary);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-1">NÚKIB</h2>
+                  <p class="text-sm text-muted mb-4">Národní úřad pro kybernetickou a informační bezpečnost</p>
+                  <p class="text-sm leading-relaxed">
+                    NÚKIB je ústředním orgánem státní správy pro kybernetickou bezpečnost v České republice.
+                    Koordinuje ochranu kritické informační infrastruktury, vydává bezpečnostní standardy
+                    a reaguje na kybernetické hrozby.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="card"><div class="card-content" style="padding:20px;">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="icon" style="color:var(--primary);">${svgI('shield')}</span>
+                <h3 class="font-semibold text-sm">Co je NÚKIB?</h3>
+              </div>
+              <p class="text-sm text-muted leading-relaxed">
+                Národní úřad pro kybernetickou a informační bezpečnost (NÚKIB) je ústřední správní úřad
+                pro oblast kybernetické a informační bezpečnosti v České republice. Byl zřízen v roce 2017
+                a sídlí v Brně.
+              </p>
+            </div></div>
+
+            <div class="card"><div class="card-content" style="padding:20px;">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="icon" style="color:var(--primary);">${svgI('fileCheck')}</span>
+                <h3 class="font-semibold text-sm">Zákon o kybernetické bezpečnosti</h3>
+              </div>
+              <p class="text-sm text-muted leading-relaxed">
+                Zákon č. 181/2014 Sb., o kybernetické bezpečnosti, stanovuje povinnosti pro správce
+                a provozovatele informačních a komunikačních systémů kritické informační infrastruktury.
+              </p>
+            </div></div>
+
+            <div class="card"><div class="card-content" style="padding:20px;">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="icon" style="color:var(--primary);">${svgI('globe')}</span>
+                <h3 class="font-semibold text-sm">Vyhláška o kybernetické bezpečnosti</h3>
+              </div>
+              <p class="text-sm text-muted leading-relaxed">
+                Vyhláška č. 82/2018 Sb. stanovuje bezpečnostní opatření, jejich rozsah a kategorizaci
+                kybernetických bezpečnostních incidentů.
+              </p>
+            </div></div>
+
+            <div class="card"><div class="card-content" style="padding:20px;">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="icon" style="color:var(--primary);">${svgI('users')}</span>
+                <h3 class="font-semibold text-sm">Povinné osoby</h3>
+              </div>
+              <p class="text-sm text-muted leading-relaxed">
+                Mezi povinné osoby patří správci a provozovatelé kritické informační infrastruktury,
+                správci významných informačních systémů, provozovatelé základních služeb
+                a poskytovatelé digitálních služeb.
+              </p>
+            </div></div>
+          </div>
+
+          <div class="card mt-6">
+            <div class="card-header">
+              <div class="card-title text-sm font-medium">Klíčové povinnosti dle zákona</div>
+            </div>
+            <div class="card-content space-y-3" id="nukib-duties"></div>
+          </div>
+        </div>
+
+        <!-- ISO 27001 -->
+        <div class="tab-content" id="tab-iso27001">
+          <div class="card mb-6">
+            <div class="card-content p-8">
+              <div class="flex items-start gap-4">
+                <div style="width:48px;height:48px;border-radius:6px;background:var(--success-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--success);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-1">ISO/IEC 27001:2022</h2>
+                  <p class="text-sm text-muted mb-4">Mezinárodní standard pro řízení bezpečnosti informací</p>
+                  <p class="text-sm leading-relaxed">
+                    ISO/IEC 27001 je nejrozšířenější mezinárodní norma pro systémy řízení bezpečnosti informací (ISMS).
+                    Poskytuje rámec pro ochranu informačních aktiv organizace prostřednictvím systematického řízení rizik.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="iso-accordion" class="space-y-2 mb-6"></div>
+
+          <div class="grid grid-4">
+            <div class="card"><div class="card-content text-center" style="padding:20px;">
+              <span class="icon" style="color:var(--primary);margin:0 auto 8px;display:block;">${svgI('users')}</span>
+              <p class="text-2xl font-bold">37</p>
+              <p class="text-xs text-muted">Organizační opatření</p>
+            </div></div>
+
+            <div class="card"><div class="card-content text-center" style="padding:20px;">
+              <span class="icon" style="color:var(--primary);margin:0 auto 8px;display:block;">${svgI('users')}</span>
+              <p class="text-2xl font-bold">8</p>
+              <p class="text-xs text-muted">Opatření pro lidské zdroje</p>
+            </div></div>
+
+            <div class="card"><div class="card-content text-center" style="padding:20px;">
+              <span class="icon" style="color:var(--primary);margin:0 auto 8px;display:block;">${svgI('server')}</span>
+              <p class="text-2xl font-bold">14</p>
+              <p class="text-xs text-muted">Fyzická opatření</p>
+            </div></div>
+
+            <div class="card"><div class="card-content text-center" style="padding:20px;">
+              <span class="icon" style="color:var(--primary);margin:0 auto 8px;display:block;">${svgI('lock')}</span>
+              <p class="text-2xl font-bold">34</p>
+              <p class="text-xs text-muted">Technologická opatření</p>
+            </div></div>
+          </div>
+        </div>
+
+        <!-- NIS2 -->
+        <div class="tab-content" id="tab-nis2">
+          <div class="card mb-6">
+            <div class="card-content p-8">
+              <div class="flex items-start gap-4">
+                <div style="width:48px;height:48px;border-radius:6px;background:rgba(124,58,237,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--chart-3);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-1">Směrnice NIS2</h2>
+                  <p class="text-sm text-muted mb-4">Evropská směrnice o bezpečnosti sítí a informačních systémů</p>
+                  <p class="text-sm leading-relaxed">
+                    NIS2 (Směrnice 2022/2555) je aktualizovaná evropská legislativa, která významně rozšiřuje
+                    požadavky na kybernetickou bezpečnost. Členské státy mají povinnost transponovat směrnici
+                    do národního práva.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-2" id="nis2-items"></div>
+
+          <div class="card mt-6">
+            <div class="card-header">
+              <div class="card-title text-sm font-medium">Dotčené sektory NIS2</div>
+            </div>
+            <div class="card-content">
+              <div class="flex flex-wrap gap-1" id="nis2-sectors"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/standardy.js"></script>
+</body>
+</html>

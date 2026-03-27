@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard – Test kybernetické bezpečnosti</title>
+  <meta name="description" content="Otestujte své znalosti kybernetické bezpečnosti v oblastech síťové bezpečnosti, hesel, hrozeb a předpisů.">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-layout" id="app">
+    <script src="/js/main.js"></script>
+    <script>
+      document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML());
+    </script>
+
+    <!-- LOGIN BOX -->
+    <div id="login-box" style="padding:20px; border:1px solid #444; max-width:300px; margin:20px auto;">
+      <h3>Přihlášení</h3>
+      <input type="email" id="email" placeholder="E‑mail" style="width:100%; margin-bottom:10px;">
+      <input type="password" id="password" placeholder="Heslo" style="width:100%; margin-bottom:10px;">
+      <button id="loginBtn" style="width:100%;">Přihlásit se</button>
+      <p id="loginError" style="color:red;"></p>
+
+      <p style="margin-top:10px; text-align:center;">
+        Nemáte účet? <a href="/register.html">Registrace</a>
+      </p>
+    </div>
+
+    <!-- TEST OBSAH -->
+    <div id="test-content" style="display:none;">
+      <main class="main-content">
+        <div class="container-sm page-padding">
+
+          <div class="flex items-center gap-3 mb-2">
+            <span class="icon icon-lg" style="color:var(--primary);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <h1 class="text-2xl font-bold">Test kybernetické bezpečnosti</h1>
+          </div>
+
+          <p class="text-muted text-sm mb-8">Otestujte své znalosti v oblasti kybernetické bezpečnosti.</p>
+
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2 text-sm">
+              <span class="text-muted" id="step-label">Krok 1 z 16</span>
+              <span class="font-medium" id="step-percent">6%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill" style="width:6%;"></div>
+            </div>
+          </div>
+
+          <div id="category-badges" class="flex flex-wrap gap-1 mb-4" style="display:none;"></div>
+
+          <div id="quiz-content"></div>
+
+          <div class="flex items-center justify-between mt-6">
+            <button class="btn btn-outline" id="btn-prev" onclick="prevStep()" disabled>Zpět</button>
+            <button class="btn btn-primary" id="btn-next" onclick="nextStep()" disabled>Další</button>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Skripty -->
+  <script src="/js/quiz-data.js"></script>
+  <script src="/js/test.js"></script>
+
+  <!-- LOGIN LOGIKA -->
+  <script>
+    async function checkLogin() {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        document.getElementById("login-box").style.display = "block";
+        document.getElementById("test-content").style.display = "none";
+        return;
+      }
+
+      const res = await fetch("/api/quiz/start", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      if (res.ok) {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("test-content").style.display = "block";
+      } else {
+        localStorage.removeItem("token");
+        document.getElementById("login-box").style.display = "block";
+        document.getElementById("test-content").style.display = "none";
+      }
+    }
+
+    checkLogin();
+
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        document.getElementById("loginError").textContent = data.message;
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      checkLogin();
+    });
+  </script>
+
+</body>
+</html>

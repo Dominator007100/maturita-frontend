@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard – Cyber Security News</title>
+  <meta name="description" content="Nejnovější zprávy a aktuality z oblasti kybernetické bezpečnosti – hrozby, legislativa a technologie.">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-layout" id="app">
+    <script src="/js/main.js"></script>
+    <script>document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML());</script>
+
+    <main class="main-content">
+      <div style="max-width:1200px;margin:0 auto;" class="page-padding">
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="icon icon-lg" style="color:var(--primary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+              <path d="M18 14h-8"></path>
+              <path d="M15 18h-5"></path>
+              <path d="M10 6h8v4h-8V6Z"></path>
+            </svg>
+          </span>
+          <div>
+            <h1 class="text-2xl font-bold" data-testid="text-news-title">Cyber Security News</h1>
+            <p class="text-sm text-muted">Nejnovější zprávy z oblasti kybernetické bezpečnosti</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <div class="search-input-wrapper">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input class="input" placeholder="Hledat zprávy..." id="search-input" data-testid="input-search-news">
+          </div>
+
+          <div class="select-wrapper">
+            <select class="select" id="category-filter" data-testid="select-news-category">
+              <option value="all">Všechny</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="featured-article"></div>
+
+        <div id="articles-grid" class="grid grid-3"></div>
+
+        <div id="no-results" style="display:none;" class="text-center py-16 text-muted">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin:0 auto 12px;opacity:0.4;">
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+          </svg>
+          <p class="text-sm">Žádné zprávy neodpovídají zvoleným filtrům.</p>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="article-modal" onclick="if(event.target===this)closeModal()">
+        <div class="modal">
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+          <div id="modal-content"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/novinky.js"></script>
+</body>
+</html>

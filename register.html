@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrace – CyberGuard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-layout" id="app">
+    <script src="/js/main.js"></script>
+    <script>
+      document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML());
+    </script>
+
+    <div style="max-width:360px;margin:40px auto;padding:24px;border:1px solid #333;border-radius:8px;">
+      <h2 style="margin-bottom:16px;">Registrace</h2>
+
+      <label class="form-label" for="email">Email</label>
+      <input class="input" type="email" id="email" placeholder="vas@email.cz">
+
+      <label class="form-label" for="password">Heslo</label>
+      <input class="input" type="password" id="password" placeholder="Zadejte heslo">
+
+      <button class="btn btn-primary" id="registerBtn" style="width:100%;margin-top:16px;">Vytvořit účet</button>
+
+      <p id="regError" style="color:#f87171;margin-top:10px;"></p>
+      <p id="regSuccess" style="color:#4ade80;margin-top:10px;"></p>
+
+      <p style="margin-top:16px;font-size:14px;">
+        Už máte účet? <a href="/test.html">Přihlásit se</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registerBtn").addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        document.getElementById("regError").textContent = data.message;
+        return;
+      }
+
+      document.getElementById("regSuccess").textContent = "Účet vytvořen. Můžete se přihlásit.";
+      setTimeout(() => window.location.href = "/test.html", 1500);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h1>Vítej v admin panelu</h1>
+  <p>Sem přidáme správu novinek, odběratelů a další funkce.</p>
+
+  <!-- Logout tlačítko -->
+  <button id="logout">Odhlásit se</button>
+
+  <!-- Kontrola tokenu -->
+  <script>
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/login.html";
+    }
+  </script>
+
+  <!-- Logout logika -->
+  <script>
+    const logoutBtn = document.getElementById("logout");
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      window.location.href = "/login.html";
+    });
+  </script>
+</body>
+</html>

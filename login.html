@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Přihlášení – Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Admin přihlášení</h2>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Heslo" required>
+      <button type="submit">Přihlásit se</button>
+    </form>
+
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <script>
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // uložíme token
+        localStorage.setItem("token", data.token);
+
+        // 🔥 přesměrování na test
+        window.location.href = "/test.html";
+      } else {
+        document.getElementById("error").textContent = data.message;
+      }
+    }
+
+    // napojíme formulář na login()
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      login();
+    });
+  </script>
+
+</body>
+</html>
