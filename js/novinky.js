@@ -9,7 +9,7 @@ var categoryColors = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('/api/news')
+  fetch('https://fantastic-spirit-production-880f.up.railway.app/api/news')
     .then(function(res) { return res.json(); })
     .then(function(data) {
       allArticles = data;

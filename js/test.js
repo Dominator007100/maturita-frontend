@@ -209,7 +209,7 @@ function submitQuiz() {
 
   const token = localStorage.getItem("token");
 
-  fetch('/api/quiz/submit', {
+fetch('https://fantastic-spirit-production-880f.up.railway.app/api/quiz/submit', {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',

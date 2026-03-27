@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  fetch('/api/quiz/submissions/' + id)
+fetch('https://fantastic-spirit-production-880f.up.railway.app/api/quiz/submissions/' + id)
     .then(function(res) {
       if (!res.ok) throw new Error('Not found');
       return res.json();
