@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.classList.add('dark');
   }
   updateThemeButton();
-
+updateAuthButton();
   const currentPath = window.location.pathname;
   document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
     const href = link.getAttribute('href');
@@ -100,8 +100,29 @@ function sidebarHTML() {
     '<li><a href="/novinky.html" data-testid="link-nav-news">' + svgIcon('newspaper') + '<span>Cyber News</span></a></li>' +
     '<li><a href="/standardy.html" data-testid="link-nav-standards">' + svgIcon('book') + '<span>Standardy</span></a></li>' +
     '</ul>' +
-    '<div class="sidebar-footer"><button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()"></button></div>' +
+'<div class="sidebar-footer">' +
+'<div id="auth-btn-container"></div>' +
+'<button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()"></button>' +
+'</div>' +
     '</aside>' +
     '<div class="sidebar-overlay" onclick="closeSidebar()"></div>' +
     '<div class="mobile-header"><button class="hamburger" onclick="toggleSidebar()">' + svgIcon('menu') + '</button><span class="font-bold">CyberGuard</span></div>';
+}
+
+
+
+function updateAuthButton() {
+  var token = localStorage.getItem('token');
+  var container = document.getElementById('auth-btn-container');
+  if (!container) return;
+  if (token) {
+    container.innerHTML = '<button class="btn btn-outline" style="width:100%;margin-bottom:8px;" onclick="logout()">Odhlásit se</button>';
+  } else {
+    container.innerHTML = '<a href="/login.html" class="btn btn-primary" style="width:100%;margin-bottom:8px;display:block;text-align:center;">Prihlasit se</a>';
+  }
+}
+
+function logout() {
+  localStorage.removeItem('token');
+  window.location.href = '/';
 }
