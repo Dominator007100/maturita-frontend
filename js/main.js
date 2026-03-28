@@ -118,7 +118,7 @@ function updateAuthButton() {
   if (token) {
     container.innerHTML = '<button class="btn btn-outline" style="width:100%;margin-bottom:8px;" onclick="logout()">Odhlásit se</button>';
   } else {
-    container.innerHTML = '<a href="/login.html" class="btn btn-primary" style="width:100%;margin-bottom:8px;display:block;text-align:center;">Prihlasit se</a>';
+container.innerHTML = '<a href="/register.html" class="btn btn-primary" style="width:100%;margin-bottom:8px;display:block;text-align:center;">Prihlasit se</a>';Prihlasit se</a>';
   }
 }
 
