@@ -10,7 +10,8 @@
 <body>
   <div class="app-layout" id="app">
     <script src="/js/main.js"></script>
-    <script>document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML());</script>
+<script src="/js/auth.js"></script>
+  <script>document.getElementById('app').insertAdjacentHTML('afterbegin', sidebarHTML()); updateAuthButton();</script>
 
     <main class="main-content">
       <section class="hero-section">
@@ -136,6 +137,5 @@
 
   <script src="/js/particles.js"></script>
   <script src="/js/home.js"></script>
-<script src="/js/auth.js"></script>
 </body>
 </html>
